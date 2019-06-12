@@ -38,11 +38,11 @@ public class SignInTest {
 
     @Test
     public void UserSignInValidation() {
-        webDriver.get("http://automationpractice.com/index.php");
         UserLogInPage userLogInPage = new UserLogInPage(webDriver);
         userLogInPage.inputUserEmail("invalid_email");
         userLogInPage.inputUserPassword("fszjcf");
         userLogInPage.submitLogIn();
+        webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         String expectedResult = "Invalid email address.";
         String actualResult = userLogInPage.getErrorMessage();
         Assert.assertEquals(expectedResult, actualResult);

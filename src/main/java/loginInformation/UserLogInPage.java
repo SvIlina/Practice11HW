@@ -16,7 +16,7 @@ public class UserLogInPage {
     @FindBy(id = "SubmitLogin")
     private WebElement signIn;
 
-    @FindBy(xpath = "//li[text() ='Invalid email address.']")
+    @FindBy(xpath = "//div[contains(@class,'alert alert-danger')]//li[text() ='Invalid email address.']")
     private WebElement errorMessage;
 
     public UserLogInPage(WebDriver webDriver) {
