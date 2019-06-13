@@ -14,10 +14,15 @@ public class UserLogInPage {
     private WebElement password;
 
     @FindBy(id = "SubmitLogin")
-    private WebElement signIn;
+    private WebElement submitLOgin;
 
-    @FindBy(xpath = "//div[contains(@class,'alert alert-danger')]//li[text() ='Invalid email address.']")
+    @FindBy(css = ".alert>ol>li:first-child()")
+    //"//*[@id=\\\"create_account_error\\\"]/ol/li")
     private WebElement errorMessage;
+
+    @FindBy(css = ".alert>ol>li:first-child()")
+    //"//div[contains(@class,'alert alert-danger')]//li[text() = 'Authentication failed.']")
+    private WebElement authenticationMessage;
 
     public UserLogInPage(WebDriver webDriver) {
         PageFactory.initElements(webDriver, this);
@@ -32,11 +37,15 @@ public class UserLogInPage {
     }
 
     public void submitLogIn() {
-        signIn.submit();
+        submitLOgin.click();
     }
 
     public String getErrorMessage() {
         return errorMessage.getText();
+    }
+
+    public String getAuthenticationMessage() {
+        return authenticationMessage.getText();
     }
 }
 
